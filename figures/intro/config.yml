@@ -8,7 +8,7 @@ grid:
   rows: 1
   columns: 1
   grid_elements:
-  - path: figures/intro/default_figure.png
+  - path: figures/intro/intro.eps
     type: static
     from:
     - 1
