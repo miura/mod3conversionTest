@@ -1,0 +1,6 @@
+\section{Step 3: FISH spots detection}
+
+Again we will perform a sequence of image processing steps manually and then include them in a macro. The starting point is to have the channels split and the nuclei stored in the ROI manager (if you lose the information at any time you can sequentially launch the macros from Steps 1 and 2 on the original hyperstack to get to this point).
+
+\subsection{Workflow}
+In this section we will segment all the spots in the three FISH channels. To detect the spots we use a similar prefiltering as for the segmentation of the nuclei (with a different smoothing scale).
