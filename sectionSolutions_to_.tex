@@ -169,7 +169,7 @@ for(i=1;i<4;i++)
 		if(i==1)NbSpotsChan1[j] = NbSpots;
 		if(i==2)NbSpotsChan2[j] = NbSpots;
 		if(i==3)NbSpotsChan3[j] = NbSpots;
-	}	
+	}	
 }
 run("Select None");
 
@@ -254,7 +254,7 @@ for(j=0;j<NbNuclei;j++)
 	run("Properties... ", "name=Nuc"+d2s(j,0)+" stroke="+ColorCode+" width=1 fill=none");
 	roiManager("update");
 }
-run("Images to Stack", "name=Stack title=[] use");
+run("Images to Stack", "name=Stack title=[] use");
 roiManager("Show All without labels");
 
 // Associate spots to slice
