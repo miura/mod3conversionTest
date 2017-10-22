@@ -5,8 +5,6 @@ untitled.tex
 sectionStep_1_Initia.tex
 figures/SetScale
 beginitemize________.tex
-sspndbsabo8.tex
-figures/index
 sectionStep_2_Segmen.tex
 figures/NucGood
 figures/NucBeforeLaplacian
