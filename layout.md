@@ -9,6 +9,7 @@ sectionStep_2_Segmen.tex
 figures/NucGood
 figures/NucBeforeLaplacian
 figures/NucBeforeFillHoles
+figures/NucOverlayBeforeDilate
 figures/NucBeforeWatershed
 beginenumerate_____i.tex
 sectionStep_3_FISH_s.tex
