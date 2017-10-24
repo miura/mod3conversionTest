@@ -8,7 +8,7 @@
     
     
     
-    \item Apply ``Laplacian of Gaussian'' (see Sec.~\textbf{Convolution} of Module~1 for an introduction to convolution filters ). We use a Laplacian of Gaussian (Log) filter as a preprocessing step to facilitate the segmentation (see section \ref{summary_of_tools_mod_3_step_2} for more information about the Log filter). In ImageJ this filter can be found in \ijmenu{[Plugins &gt; Feature Extraction&gt; FeatureJ &gt; FeatureJ Laplacian]}.%\ref{sec:Convolution}\ref{fig:nucleiLaplacian}
+    \item Apply ``Laplacian of Gaussian'' (see Sec.~\textbf{Convolution} of Module~1 for an introduction to convolution filters ). We use a Laplacian of Gaussian (Log) filter as a preprocessing step to facilitate the segmentation (see section \ref{summary_of_tools_mod_3_step_2} for more information about the Log filter). In ImageJ this filter can be found in \ijmenu{[Plugins &gt; Feature Extraction&gt; FeatureJ &gt; FeatureJ Laplacian]}.%\ref{sec:Convolution}\
     
     The first step of the filter is a Gaussian filter whose radius (smoothing scale) must be adjusted to the typical size of the nuclei. The next step is a Laplacian filter. When the smoothing scale is properly adjusted the nuclei appear as homogeneously dark and surrounded by a bright halo in the filtered image (see Fig.~\ref{fig:nucleiLaplacian}(b)). A rule of thumb is to set the smoothing scale to about half the expected radius of the objects. 
     
