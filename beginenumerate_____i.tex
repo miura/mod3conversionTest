@@ -8,7 +8,7 @@
     
     
     
-    \item Apply ``Laplacian of Gaussian'' (see Sec.~\textbf{Convolution} of Module~1 for an introduction to convolution filters ). We use a Laplacian of Gaussian (Log) filter as a preprocessing step to facilitate the segmentation (see section \ref{summary_of_tools_mod_3_step_2} for more information about the Log filter). In ImageJ this filter can be found in \ijmenu{[Plugins > Feature Extraction> FeatureJ > FeatureJ Laplacian]}.%\ref{sec:Convolution}
+    \item Apply ``Laplacian of Gaussian'' (see Sec.~\textbf{Convolution} of Module~1 for an introduction to convolution filters ). We use a Laplacian of Gaussian (Log) filter as a preprocessing step to facilitate the segmentation (see section \ref{summary_of_tools_mod_3_step_2} for more information about the Log filter). In ImageJ this filter can be found in \ijmenu{[Plugins &gt; Feature Extraction&gt; FeatureJ &gt; FeatureJ Laplacian]}.%\ref{sec:Convolution}\ref{fig:nucleiLaplacian}
     
     The first step of the filter is a Gaussian filter whose radius (smoothing scale) must be adjusted to the typical size of the nuclei. The next step is a Laplacian filter. When the smoothing scale is properly adjusted the nuclei appear as homogeneously dark and surrounded by a bright halo in the filtered image (see Fig.~\ref{fig:nucleiLaplacian}(b)). A rule of thumb is to set the smoothing scale to about half the expected radius of the objects. 
     
@@ -18,12 +18,12 @@
 
     
 
-In Fig.~\ref{fig:nucleiLaplacian} we can observe the result of the LoG filter performed on the nuclei image. The shapes of the nuclei are nicely mimicked in rings of different intensities (Fig.~\ref{fig:NucAfterLaplacianLUT}), as it can be visualized by changing the LUT to a colored LUT (\ijmenu{[Image> LookUp Tables]} to get the list of available LUTs). Try to optimize the smoothing scale of FeatureJ Laplacian to obtain a result similar to \ref{fig:nucleiLaplacian}.
+In Fig.~\ref{fig:nucleiLaplacian} we can observe the result of the LoG filter performed on the nuclei image. The shapes of the nuclei are nicely mimicked in rings of different intensities (Fig.~\ref{fig:NucAfterLaplacianLUT}), as it can be visualized by changing the LUT to a colored LUT (\ijmenu{[Image&gt; LookUp Tables]} to get the list of available LUTs). Try to optimize the smoothing scale of FeatureJ Laplacian to obtain a result similar to \ref{fig:nucleiLaplacian}.
 
     \item Set threshold and convert to mask. %\ref{sec:Thresholding}
     Here, we will convert this image into a binary image by thresholding (see section on \textbf{thresholding} in Module 1). We need to set the bounds of the threshold to separate the nuclei from the background. To achieve this, we use the command:
    
-    \ijmenu{[Image >  Adjust > Threshold...]}
+    \ijmenu{[Image &gt;  Adjust &gt; Threshold...]}
     
     Make sure to un-tick "Dark Bakground" and "set background pixels to NaN" (appears as pop-up window when clicking "Apply"), to obtain a regular 8-bit binary image (mask). Thanks to the preprocessing the nuclei can now readily be segmented by thresholding the pixels with negative values (up to a small negative value) in the filtered image. 
     The results is a black and white image, in which all pixels that belong to an object have an intensity value of 255, while all pixels that belong to the background have an intensity value of 0. 
@@ -32,30 +32,30 @@ In Fig.~\ref{fig:nucleiLaplacian} we can observe the result of the LoG filter pe
     
 
     \item Fill holes
-    \ijmenu{[Process >  Binary > Fill Holes]}.
-    Some objects of the binary image might have holes (see Fig.~\ref{fig:NucFillHoles}). A hole is defined as a group of pixels belonging to the background (white pixels) surrounded by pixels belonging to the foreground (black pixels). Since we do not expect the nuclei to exhibit any hole, we use \ijmenu{[Process > Binary > Fill Holes]} to fill them in (see section \textbf{Morphology} in Module 1).%\ref{sec:Morpho}.
+    \ijmenu{[Process &gt;  Binary &gt; Fill Holes]}.
+    Some objects of the binary image might have holes (see Fig.~\ref{fig:NucFillHoles}). A hole is defined as a group of pixels belonging to the background (white pixels) surrounded by pixels belonging to the foreground (black pixels). Since we do not expect the nuclei to exhibit any hole, we use \ijmenu{[Process &gt; Binary &gt; Fill Holes]} to fill them in (see section \textbf{Morphology} in Module 1).%\ref{sec:Morpho}.
     
     
     \item Dilate
-    \ijmenu{[Process >  Binary > Dilate]}.
+    \ijmenu{[Process &gt;  Binary &gt; Dilate]}.
     From Fig.~\ref{fig:NucOverlayBeforeDilate} we can see that the detected boundaries mostly follow the contours of the nuclei but that they sometimes overlap with them. This may become a problem later on when intending to detect a FISH spot close to the boundary of a nucleus. This problem can be mitigated by enlarging the segmented nuclei by morphological dilation (see section \textbf{Morphology} in Module 1). Each round of dilation enlarges the objects by one pixel, several dilations can be performed sequentially. %\ref{sec:Morpho}
     
     
 
     \item Watershed
-    \ijmenu{[Process >  Binary > Watershed]}.
+    \ijmenu{[Process &gt;  Binary &gt; Watershed]}.
     Try the binary watershed command to separate touching nuclei.%\ref{sec:Watershed}) 
    
 
     \item Analyze Particles.
     At this point we obtained a binary image holding the segmented nuclei.
-    Using \ijmenu{[Analyze > Analyze Particle]} we can identify and measure several properties of these connected particles. This command also allows us to exclude an object based on its geometry. For our purpose,  we want to exclude deformed particles and particles that are too small or too big.
+    Using \ijmenu{[Analyze &gt; Analyze Particle]} we can identify and measure several properties of these connected particles. This command also allows us to exclude an object based on its geometry. For our purpose,  we want to exclude deformed particles and particles that are too small or too big.
     
     To exclude deformed particles, we can measure their circularity. The circularity describes how closely an object resembles a circle by computing the ratio between its area and its square perimeter. A perfect circle has a circularity parameter = 1. Any other object will have a circularity parameter smaller than 1, but greater than 0 (an infinite line). 
     
     Particles that are smaller or larger than given critical areas can also be excluded. The area bounds should be first determined empirically: you can do so by measuring the area of a typical nucleus and setting the lower and upper bounds to, for instance 0.66x and 1.5x this value. 
     
-    Finally, particles touching a border can be easily discarded by ticking "Exclude on edges" in \ijmenu{[Analyze > Analyze Particles...]}. The purpose is to analyse FISH spots by nucleus, do not forget to also tick 'Add to Manager' to add the nuclei analyzed to the ROI Manager so that they can easily be accessed further on.
+    Finally, particles touching a border can be easily discarded by ticking "Exclude on edges" in \ijmenu{[Analyze &gt; Analyze Particles...]}. The purpose is to analyse FISH spots by nucleus, do not forget to also tick 'Add to Manager' to add the nuclei analyzed to the ROI Manager so that they can easily be accessed further on.
     
     %PS \emph{Some functions, such as Analyze Particles and Watershed works on what is displayed, not on the underlying image intensities as diplayed on mouse-over. So when applied to an image they return the same results as when applied to an inverted image with an inverted LUT.}
 
@@ -90,7 +90,7 @@ getMinAndMax(min,max);
 setThreshold(min,-0.05);
 run("Convert to Mask");
 run("Fill Holes");
-for(i=0;i<2;i++)run("Dilate");
+for(i=0;i&lt;2;i++)run("Dilate");
 
 //Split Particles
 run("Watershed");
@@ -99,49 +99,27 @@ rename("Mask");
 //Analyze particle to estimate median area
 run("Analyze Particles...", "size=0-Infinity circularity=0.75-1.00 show=Nothing display exclude clear include"); 
 Area = newArray(nResults);
-for(i=0;i<nResults;i++)Area[i] = getResult("Area", i);
-Area = Array.sort(Area);
-MedianArea = Area[nResults/2];
-print("Median area: "+d2s(MedianArea,0));
-
-//Analyze Particles and store to ROI manager
-run("Analyze Particles...", "size="+MedianArea*0.66+"-"+MedianArea*1.5+" circularity=0.75-1.00 show=Nothing display exclude clear include add");
-NbNuclei = roiManager("count");
-
-selectImage("Mask");
-close();
-selectImage("C1-Small.tif");
-roiManager("Show All");
-\end{lstlisting}
-\textbf{sourcecode}: mod3conversionTest/module3_02.ijm
-
-\subsection{Summary of tools used in Step 2}
-\label{summary_of_tools_mod_3_step_2}
-
-\begin{itemize}
-
-\item \textbf{FeatureJ Laplacian}\\
-\ijmenu{[Plugins > Feature Extraction > FeatureJ > FeatureJ Laplacian]}.\\
+for(i=0;i Feature Extraction &gt; FeatureJ &gt; FeatureJ Laplacian]}.\\
 \url{http://imagescience.org/meijering/software/featurej/}\\
  After applying a Gaussian filter with radius defined by the smoothing scale this command computes the sum of the second order spacial derivatives of the intensity along the Cartesian directions at each pixel. \\
 It is used to emphasize large isotropic intensity curvature (domes) in an image. This combination of filters (Gaussian followed by Laplacian) is called "LoG" for Laplacian of Gaussian and is commonly used for spot or blob enhancement. The optimal smoothing scale is directly related to the radius of the blob-like objects to be enhanced. The LoG is ubiquitous in image processing and was popularized by \cite{lindeberg1993scale} for feature detection in the framework of the scale-space theory.
 
-\item \textbf{Convert to Mask} \ijmenu{[Image > Binary > Convert to Mask]}.\\
+\item \textbf{Convert to Mask} \ijmenu{[Image &gt; Binary &gt; Convert to Mask]}.\\
 Convert a gray-scale image into a binary (black and white) image, the active threshold is used to define whether a pixel is part of the foreground or of the background. 
 
-\item \textbf{setThreshold} \ijmenu{[Image > Adjust > Threshold ...]}.\\
+\item \textbf{setThreshold} \ijmenu{[Image &gt; Adjust &gt; Threshold ...]}.\\
 Set the values of the threshold bounds.
 
-\item \textbf{Fill Holes} \ijmenu{[Process > Binary > Fill Holes]}.\\
+\item \textbf{Fill Holes} \ijmenu{[Process &gt; Binary &gt; Fill Holes]}.\\
 Fill holes in the connected particles (objects) of a binary image. 
 
-\item \textbf{Analyze Particles}  \ijmenu{[Analyze > Analyze Particles...]}.\\
+\item \textbf{Analyze Particles}  \ijmenu{[Analyze &gt; Analyze Particles...]}.\\
 Find the connected particles in a binary image and optionally filter them (keep/discard) based on their area, geometric properties or location (touching an edge of the image).
 
-\item \textbf{Dilate} \ijmenu{[Process > Binary > Dilate]}.\\
+\item \textbf{Dilate} \ijmenu{[Process &gt; Binary &gt; Dilate]}.\\
 Enlarge the objects in a binary image. This command enlarges the boundaries of the objects by one pixel. 
 
-\item \textbf{Watershed} \ijmenu{[Process > Binary > Watershed]}.\\
+\item \textbf{Watershed} \ijmenu{[Process &gt; Binary &gt; Watershed]}.\\
 Intent to split touching/overlapping particles to individual particles in a binary image.
 \end{itemize}
 
