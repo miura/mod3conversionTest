@@ -20,6 +20,8 @@ figures/VisColorCode
 beginenumerate_____i2.tex
 sectionSolutions_to_.tex
 sectionAssignments__.tex
+sprnt84gpno.tex
+h36aalc4plg.tex
 sectionAcknowledgeme.tex
 2t0jauaflbg.html
 figures/test
